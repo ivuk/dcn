@@ -9,16 +9,13 @@ try:
 	db = CouchDatabase(str(dbname), create=True)
 except Exception:
 	raise
-else:
-	print 'Database created.'
+'''else:
+	print 'Database created.'''
 
 def func(param, param2):
-	record_type = "http://example.com/fetch-record-type.html"
+	record_type = 'http://example.com/fetch-record-type.html'
 	if param == '-i':
 		row = raw_input('Insert text here:  ')
-		print str(row)
-
-#		record_type = 'http://example.com/somerecordtype.html'
 		new_row = Record({'row':str(row)}, record_type)
 
 		try:
@@ -39,8 +36,8 @@ def func(param, param2):
 if __name__ == '__main__':
 	if len(sys.argv) == 1:
 		print 'usage: '+sys.argv[0]+' [OPTION]'
-		print '    -i: insert new row\n'
-		print '    -l: list rows\n'
+		print '    -i: insert new row'
+		print '    -l: list rows'
 		print '    -d: delete row\n'
 	else:
 		if sys.argv[1] == "-i":
@@ -49,3 +46,5 @@ if __name__ == '__main__':
 			func(str(sys.argv[1]),str(sys.argv[2]))
 		elif sys.argv[1] == "-l":
 			func(str(sys.argv[1]),"")
+		else:
+			os.system('./dcn.py')
