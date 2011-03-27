@@ -34,7 +34,12 @@ def func(param, param2):
 				print 'New row created.'
 
 	elif param == '-d':
-		print 'brisanje'
+		if param2 != '':
+			print 'brisanje'
+		else:
+			func('-l','')
+			dvar = raw_input('Which record do you want to delete: ')
+			print dvar
 
 	elif param == '-l':
 		results = db.get_records(record_type = record_type, create_view = True)
@@ -57,8 +62,16 @@ if __name__ == '__main__':
 			else:
 				print '-i option accepts either no parameters or a single parameter.\n'
 		elif sys.argv[1] == '-d':
-			func(str(sys.argv[1]),str(sys.argv[2]))
+                        if len(sys.argv) == 3:
+                                func(str(sys.argv[1]),str(sys.argv[2]))
+                        elif len(sys.argv) == 2:
+                                func(str(sys.argv[1]),'')
+                        else:  
+                                print '-d option accepts either no parameters or a single parameter.\n'
 		elif sys.argv[1] == '-l':
-			func(str(sys.argv[1]),'')
+			if len(sys.argv) == 2:
+				func(str(sys.argv[1]),'')
+			else:
+				print '-l option accepts no parameters.\n'
 		else:
 			os.system('./dcn.py')
