@@ -47,6 +47,22 @@ def func(param, param2):
 			record = records.value
 			print record
 
+class base:
+# base.record_type
+    record_type = 'http://example.com/fetch-record-type.html'
+# base.insert
+    def insert(self):
+        return True
+# base.delete
+    def delete(self):
+        return True
+# base.list
+    def list(self):
+        return True
+# konstruktor
+def __init__(self):
+    self.data = []
+
 if __name__ == '__main__':
 	if len(sys.argv) == 1:
 		print 'usage: '+sys.argv[0]+' [OPTION]'
@@ -74,4 +90,4 @@ if __name__ == '__main__':
 			else:
 				print '-l option accepts no parameters.\n'
 		else:
-			os.system('./dcn.py')
+			os.system('./'+sys.argv[0]+'')
