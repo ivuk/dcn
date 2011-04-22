@@ -13,11 +13,11 @@ except Exception:
 '''else:
 	print 'Database created.'''
 
-def func(param, param2):
+def func(*param):
     record_type = 'http://example.com/fetch-record-type.html'
-    if param == '-i':
-        if param2 != '':
-            new_row = Record({'_id': uuid4().hex,'data':str(param2)}, record_type)
+    if param[0] == '-i':
+        if param[1] != '': 
+            new_row = Record({'_id': uuid4().hex,'data':str(param[1])}, record_type)
             try:
                 db.put_record(new_row)
             except Exception:
@@ -26,27 +26,27 @@ def func(param, param2):
                 print 'New row created.'
         else:
             row = raw_input('Insert text here:  ')
-            new_row = Record({'row':str(row)}, record_type)
+            new_row = Record({'_id': uuid4().hex,'data':str(row)}, record_type)
             try:
                 db.put_record(new_row)
             except Exception:
                 raise
             else:
                 print 'New row created.'
-    elif param == '-d':
-        if param2 != '':
+    elif param[0] == '-d':
+        if param[1] != '': 
             print 'brisanje'
         else:
             func('-l','')
             dvar = raw_input('Which record do you want to delete: ')
             print dvar
-    elif param == '-l':
+    elif param[0] == '-l':
         results = db.get_records(record_type = record_type, create_view = True)
         for records in results:
             record = records.value
             print record
 
-class base:
+'''class base:
 # base.record_type
     record_type = 'http://example.com/fetch-record-type.html'
 # base.insert
@@ -60,7 +60,7 @@ class base:
         return True
 # konstruktor
 def __init__(self):
-    self.data = []
+    self.data = []'''
 
 if __name__ == '__main__':
 	if len(sys.argv) == 1:
